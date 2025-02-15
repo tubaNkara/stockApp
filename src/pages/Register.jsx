@@ -11,11 +11,16 @@ import AuthImage from "../components/AuthImage";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import RegisterForm from "../components/RegisterForm";
-
+import useAuthCall from "../hook/useAuthCall";
+ 
 const Register = () => {
+
+
+  //* useAuthCallun hookunun içindeki fonku çağırıyoruz.
+const {register}= useAuthCall()
   const SignupSchema = Yup.object().shape({
     username: Yup.string()
-      .min(5, "Too short. Username should be more than 5 character")
+      .min(4, "Too short. Username should be more than 5 character")
       .max(50, "Too Long! Username shouldn't be more than 50 character")
       .required("Required"),
     firstName: Yup.string()
@@ -30,7 +35,7 @@ const Register = () => {
     password: Yup.string()
       .min(8, "Password should be more than 8 character")
       .matches(/[a-z]/, "Password should include lowercase")
-      .matches(/[A-Z]/, "Password should include lowercase")
+      .matches(/[A-Z]/, "Password should include uppercase")
       .matches(/\d+/, "Password should include numeric")
       .matches(/[@$?!%&*_-]+/, "Password should include special characters (@$?!%&*_-)"),
   });
@@ -82,6 +87,7 @@ const Register = () => {
             validationSchema={SignupSchema}
             onSubmit={(values)=>{
                 console.log(values)
+                register(values)
             }}
 
             component={(props)=>( <RegisterForm  {...props}   />  )}

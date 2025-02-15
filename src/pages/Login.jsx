@@ -9,15 +9,16 @@ import { Link } from "react-router-dom";
 import AuthHeader from "../components/AuthHeader";
 import AuthImage from "../components/AuthImage";
 import { Formik } from "formik";
-// import useAuthCall from "../hook/useAuthCall";
+import useAuthCall from "../hook/useAuthCall";
 import LoginForm from "../components/LoginForm";
 import * as Yup from "yup";
+
 const Login = () => {
-  // const { login } = useAuthCall();
+  const { login } = useAuthCall();
 
   const SignupSchema = Yup.object().shape({
     username: Yup.string()
-      .min(5, "Kullanıcı adı 5 karakterden az olamaz")
+      .min(4, "Kullanıcı adı 5 karakterden az olamaz")
       .max(50, "Kullanıcı adı 50 karakterden fazla olamaz")
       .required("Kullanıcı adı zorunludur"),
       password: Yup.string()
