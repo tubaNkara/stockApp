@@ -47,9 +47,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
-// import useAuthCall from "../hook/useAuthCall";
+import useAuthCall from "../hook/useAuthCall";
 import { useNavigate } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const drawerWidth = 240;
 
@@ -80,22 +81,28 @@ function ResponsiveDrawer(props) {
 const links=[
 
   {title:"Dashboard",
-    url:""
+    url:"",
+    icon:"public/assets/navbar/ic_analytics.svg",
   },
   {title:"Firms",
-    url:"firms"
+    url:"firms",
+  icon: "public/assets/navbar/firms.svg",
   },
   {title:"Products",
-    url:"products"
+    url:"products",
+  icon: "public/assets/navbar/firms.svg",
   },
   {title:"Purchases",
-    url:"purchases"
+    url:"purchases",
+    icon: "public/assets/navbar/purchase.svg",
   },
   {title:"Sales",
-    url:"sales"
+    url:"sales",
+  icon: "public/assets/navbar/sales.svg",
   },
   {title:"Brands",
-    url:"brands"
+    url:"brands",
+    icon: "public/assets/navbar/brand.svg" 
   }
 ]
 
@@ -108,9 +115,17 @@ const links=[
         {links.map((text, index) => (
           <ListItem key={index} disablePadding>
             <ListItemButton onClick={()=>navigate(`${text.url}`)} >
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
+                     <Box
+                      sx={{
+                        width:24,
+                        heigh:24,
+                        backgroundImage:`url(${text.icon})`,
+
+                        color:"pink"
+                      }}
+>
+                    </Box>
+
               <ListItemText primary={text.title} />
             </ListItemButton>
           </ListItem>
@@ -147,7 +162,18 @@ const links=[
           <Typography variant="h6" noWrap component="div">
            Stock App
           </Typography>
-          <Button color="inherit" onClick={logout} >Logout</Button>
+
+          <Button color="inherit" onClick={logout}
+          sx={{"&:hover":{
+            backgroundColor:"secondary.second",
+            color:"white",
+            "& .MuiSvgIcon-root":{
+              color:"pink"
+            }
+          }}} >Logout
+          <LogoutIcon/>
+          </Button>
+          
         </Toolbar>
         
       </AppBar>

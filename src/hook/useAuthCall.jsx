@@ -13,7 +13,6 @@ import{useNavigate} from "react-router-dom"
 import axios from "axios"
 
 const useAuthCall = () => {
-
     const dispatch=useDispatch();
     const navigate=useNavigate();
 
@@ -24,12 +23,30 @@ const useAuthCall = () => {
     try {
         const {data}= await axios.post("https://18102.fullstack.clarusway.com/users/",userInfo);
         console.log(data)
+
         dispatch(registerSuccess(data));
-        NavigationPreloadManager("/stock");
+        navigate("/stock");
     } catch (error) {
         dispatch(fetchFail())
     }
 };
+
+
+const logout = async()=>{
+    dispatch(fetchStart())
+    try {
+        const {data}= await axios("https://stock-api-js.fullstack.clarusway.com/auth/logout",{
+            headers:{
+                Authorization:`Token ${token}`,
+            },
+        }) 
+        navigate("/")
+        dispatch(logoutSuccess())
+        
+    } catch (error) {
+        dispatch(fetchFail())
+    }
+}
 
 const login = async(userInfo)=>{
     dispatch(fetchStart())
@@ -37,26 +54,12 @@ const login = async(userInfo)=>{
         const{data}= await axios.post("https://18102.fullstack.clarusway.com/auth/login",userInfo)
         console.log("login data",data)
         dispatch(loginSuccess(data))
-        navigate("stock")
+        navigate("/stock")
     } catch (error) {
         dispatch(fetchFail())
     }
 }
-const logout = async(userInfo)=>{
-    dispatch(fetchStart())
-    try {
-        const {data}= await axios.post("https://stock-api-js.fullstack.clarusway.com/auth/logout",{
-            headers:{
-                Authorization:`Token ${token}`
-            }
-        }) 
-        
-        dispatch(logoutSuccess())
-        navigate("/")
-    } catch (error) {
-        
-    }
-}
+
 
   return {register, login, logout}
 }
