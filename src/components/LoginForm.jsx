@@ -45,13 +45,13 @@ const LoginForm = ({ values, handleChange, errors, touched, handleBlur,handleSub
           </Button>
         )}
 
-        {/* <Button
+        <Button
           variant="contained"
           type="submit"
           disabled={loading}
           startIcon={loading && <CircularProgress />}>
           Submit
-        </Button> */}
+        </Button>
       </Box>
     </Form>
   );

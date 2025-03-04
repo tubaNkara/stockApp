@@ -57,7 +57,7 @@ const Login = () => {
             validationSchema={SignupSchema}
             onSubmit={(values, actions) => {
               login(values);
-              console.log(values,"loginiçinde")
+              console.log(values,)
               actions.resetForm();
               actions.setSubmitting(false);
             }}
