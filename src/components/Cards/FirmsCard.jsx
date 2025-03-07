@@ -21,12 +21,12 @@ const {deleteStockData}=useStockCall()
       height:400,
       display:"flex",
       flexDirection:"column",
-      justifyContent:"space-between",
+      justifyContent:"center",
       padding:"0.5rem",
-      
+      ali:"center",
        }}>
       <CardContent>
-        <Typography gutterBottom variant="body2" sx={{  color: 'text.secondary', fontSize:"22px"}}>
+        <Typography gutterBottom variant="h5" component="div">
          {name}
         </Typography>
       </CardContent>
@@ -50,7 +50,8 @@ const {deleteStockData}=useStockCall()
 
 
       <CardActions sx={{justifyContent:"center", gap:2}}>
-        <EditIcon sx= {btnStyle} />
+        <EditIcon sx= {btnStyle} onClick={()=>{setInitialState({_id,name,address,phone,image});
+      handleOpen()}} />
         <DeleteIcon sx={btnStyle} onClick={()=>deleteStockData("firms",_id)} />
       </CardActions>
     

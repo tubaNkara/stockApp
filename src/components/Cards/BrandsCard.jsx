@@ -42,7 +42,8 @@ const {deleteStockData}=useStockCall()
     
 
       <CardActions sx={{justifyContent:"center", gap:2}}>
-        <EditIcon sx= {btnStyle} />
+        <EditIcon sx= {btnStyle} onClick={()=>{setInitialState({_id,name,image});
+      handleOpen()}}/>
         <DeleteIcon sx={btnStyle} onClick={()=>deleteStockData("brands",_id)} />
       </CardActions>
     

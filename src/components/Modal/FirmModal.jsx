@@ -8,6 +8,8 @@ import { useState } from "react";
 import useStockCall from "../../hook/useStockCall";
 import { useEffect } from "react";
 
+
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -24,7 +26,7 @@ export default function FirmModal({ open, handleClose ,initialState }) {
   const { createStockData ,updateStockData } = useStockCall();
   const [info, setInfo] = useState({
     name: "",
-    adress: "",
+    address: "",
     phone: "",
     image: "",
   });
